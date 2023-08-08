@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS CRUD with Bootstrap Modal</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="st.css">
+    <style>
+      body {
+        background-image: url(https://thuthuatnhanh.com/wp-content/uploads/2022/08/hinh-nen-may-tinh-mau-xanh-800x450.jpg);
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+      h1.h2 {
+        text-align: center;
+      }
+    </style>
+</head>
+
+<body ng-controller="MainController">
+    
+    <div class="container">
+        <h2>Angular 2 QuickStart</h2>
+        <h3>Current User: dangconthanh42@gmail.com</h3>
+        <button class="btn btn-primary" ng-click="openModal('add')">Add Product</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>
+                        <button class="btn btn-warning" ng-click="openModal('edit', user)"><i
+                                class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" ng-click="deleteUser(user)"><i class="fas fa-trash"></i></button>
+                    </td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.Price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="myModal" class="modal fade modal-edit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ modalTitle }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="submitUser()">
+                        <div class="form-group">
+                            <label for="name">Product Name:</label>
+                            <input type="text" class="form-control" ng-model="formData.name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="floatnumber">Product Price:</label>
+                            <input type="text" class="form-control" ng-model="formData.Price" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="baithi.js"></script>
+
+</body>
+
+</html>
